@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import HabitsPage from "./pages/HabitsPage/HabitsPage";
 
 export default function App() {
     return (
@@ -14,6 +15,10 @@ export default function App() {
                     path="/cadastro" 
                     element={<RegisterPage />}
                 />
+                <Route 
+                    path="/habitos" 
+                    element={<HabitsPage />}
+                />                
             </Routes>
         </BrowserRouter>
     );

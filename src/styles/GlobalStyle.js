@@ -11,6 +11,13 @@ const GlobalStyle = createGlobalStyle`
 
     button, input[type="submit"] {
         cursor: pointer;
+        border: none;
+        font-family: "Lexend Deca", sans-serif;
+    }
+
+    input {
+        font-family: "Lexend Deca", sans-serif;
+        color: #666666;
     }
 `;
 
