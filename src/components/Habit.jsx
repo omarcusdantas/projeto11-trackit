@@ -1,21 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 import DayButton from "./DayButton";
+import axios from "axios";
 
-export default function Habit({info}) {
+export default function Habit({info, days, habitId, updateHabits, token}) {
     const daysOfWeek = ["D", "S", "T", "Q", "Q", "S", "S"];
+
+    function deleteHabit() {
+        axios
+            .delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}`, { headers: {"Authorization" : `Bearer ${token}`}})
+            .then(() => {updateHabits()})
+            .catch((error) => console.log(error));
+    }
 
     return (
         <Container>
             <h3>{info}</h3>
             <WeekContainer>
                 {
-                    daysOfWeek.map((day, index) => (
-                        <DayButton key={index} text={day} isDisabled={true}></DayButton>
-                    ))
+                    daysOfWeek.map((day, index) => {
+                        if(days.includes(index+1)) {
+                            return <DayButton key={index} text={day} isDisabled={true} selected={true}></DayButton>
+                        }
+                        return <DayButton key={index} text={day} isDisabled={true} selected={false}></DayButton>
+                    })
                 }
             </WeekContainer>
-            <ion-icon name="trash-outline"></ion-icon>
+            <ion-icon name="trash-outline" onClick={deleteHabit}></ion-icon>
         </Container>
     );
 }

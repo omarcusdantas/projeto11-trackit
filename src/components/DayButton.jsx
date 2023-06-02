@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function DayButton({text, isDisabled}) {
-    const [isSelected, setIsSelected] = React.useState(false);
+export default function DayButton({text, isDisabled, selected, handleClick, dayIndex}) {
+    const [isSelected, setIsSelected] = React.useState(selected);
 
     function toggleSelected() {
         setIsSelected(!isSelected);
+        handleClick(dayIndex);
     }
 
     return (

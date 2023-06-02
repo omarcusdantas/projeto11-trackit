@@ -4,11 +4,13 @@ import logo from "../../assets/logo.png";
 import axios from "axios";
 import React from "react";
 import { ThreeDots } from "react-loader-spinner";
+import { UserContext } from "../../UserContext";
 
 export default function LoginPage() {
     const [inputEmail, setInputEmail] = React.useState("");
     const [inputPassword, setInputPassword] = React.useState("");
     const [isDisabled, setIsDisabled] = React.useState(false);
+    const { setUserData } = React.useContext(UserContext);
     const navigate = useNavigate();
 
     function handleForm(event) {
@@ -23,8 +25,12 @@ export default function LoginPage() {
         axios
             .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", data)
             .then((response) => {
-                setIsDisabled(false);
-                console.log(response.data);                
+                setIsDisabled(false);  
+                setUserData({
+                    token: response.data.token,
+                    img: response.data.image
+                });
+                navigate("/habitos");             
             })
             .catch((error) => {
                 setIsDisabled(false);

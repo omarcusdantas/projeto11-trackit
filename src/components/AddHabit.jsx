@@ -2,33 +2,66 @@ import React from "react";
 import styled from "styled-components";
 import DayButton from "./DayButton";
 import { ThreeDots } from "react-loader-spinner";
+import axios from "axios";
 
-export default function AddHabit({toggleAddHabit}) {
+export default function AddHabit({toggleAddHabit, updateHabits, token}) {
     const daysOfWeek = ["D", "S", "T", "Q", "Q", "S", "S"];
     const [isDisabled, setIsDisabled] = React.useState(false);
+    const [days, setDays] = React.useState([]);
+    const [inputName, setInputName] = React.useState("");
+
+    function manageDays(day) {
+        const indexToRemove = days.indexOf(day);
+    
+        if (indexToRemove !== -1) {
+            const updatedDays = [...days];
+            updatedDays.splice(indexToRemove, 1);
+            setDays(updatedDays);
+            return;
+        }
+    
+        setDays([...days, day]);
+    }
 
     function registerHabit() {
         setIsDisabled(true);
+        if (inputName !== "" && days.length !== 0) {
+            const data = {
+                name: inputName,
+                days: days
+            };
+
+            axios
+                .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", data, { headers: {"Authorization" : `Bearer ${token}`}})
+                .then(() => {updateHabits(); toggleAddHabit();})
+                .catch((error) => console.log(error));
+        }
     }
 
     return (
         <Container>
-            <input type="text" placeholder="nome do hábito" disabled={isDisabled}/>
+            <input 
+                type="text" 
+                placeholder="nome do hábito" 
+                disabled={isDisabled} 
+                onChange={(event) => setInputName(event.target.value)}
+                value={inputName}
+            />
             <WeekContainer>
                 {
                     daysOfWeek.map((day, index) => (
-                        <DayButton key={index} text={day} isDisabled={isDisabled}></DayButton>
+                        <DayButton key={index} text={day} dayIndex={index+1} isDisabled={isDisabled} selected={false} handleClick={manageDays}></DayButton>
                     ))
                 }
             </WeekContainer>
             <ButtonContainer>
-                <button onClick={toggleAddHabit}>Cancelar</button>
-                <button onClick={registerHabit}>
+                <button onClick={toggleAddHabit} disabled={isDisabled}>Cancelar</button>
+                <button onClick={registerHabit} disabled={isDisabled}>
                     { isDisabled &&
                         <ThreeDots height="13px" color="#ffffff"></ThreeDots>
                     }
                     { !isDisabled &&
-                        "Entrar"
+                        "Salvar"
                     }
                 </button>
             </ButtonContainer>
@@ -71,6 +104,10 @@ const ButtonContainer = styled.div`
         font-size: 16px;
         color: #52B6FF;
         background-color: #ffffff;
+    
+        &:disabled {
+            cursor: default;
+        }
     }
 
     button:nth-child(2) {
@@ -80,6 +117,11 @@ const ButtonContainer = styled.div`
         height: 35px;
         font-size: 16px;
         color: #ffffff;
+
+        &:disabled {
+            background-color: #86CCFF;
+            cursor: default;
+        }
     }
 `;
 

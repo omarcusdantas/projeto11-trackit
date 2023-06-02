@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import "react-circular-progressbar/dist/styles.css";
+import { UserContext } from "../UserContext";
 
 export default function TopBar() {
+    const { userData } = React.useContext(UserContext);
+
     return (
         <Bar>
             <Container>
                 <h1>TrackIt</h1>
-                <img src="https://http.cat/411.jpg" alt="" />
+                <img src={userData.img} alt="User photo" />
             </Container>
         </Bar>
-
     );
 }
 
