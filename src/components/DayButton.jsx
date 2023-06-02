@@ -10,7 +10,7 @@ export default function DayButton({text, isDisabled, selected, handleClick, dayI
     }
 
     return (
-        <Button selected={isSelected} onClick={toggleSelected} disabled={isDisabled}>
+        <Button selected={isSelected} onClick={toggleSelected} disabled={isDisabled} data-test="habit-day">
             {text}
         </Button>
     );

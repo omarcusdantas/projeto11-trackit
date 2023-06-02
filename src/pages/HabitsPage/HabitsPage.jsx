@@ -35,7 +35,7 @@ export default function HabitsPage() {
             <Main>
                 <Title>
                     <h2>Meus hábitos</h2>
-                    <button onClick={toggleAddHabit}><p>+</p></button>
+                    <button onClick={toggleAddHabit} data-test="habit-create-btn"><p>+</p></button>
                 </Title>
                 {   
                     isAddHabit &&

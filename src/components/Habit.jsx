@@ -14,8 +14,8 @@ export default function Habit({info, days, habitId, updateHabits, token}) {
     }
 
     return (
-        <Container>
-            <h3>{info}</h3>
+        <Container data-test="habit-container">
+            <h3 data-test="habit-name">{info}</h3>
             <WeekContainer>
                 {
                     daysOfWeek.map((day, index) => {
@@ -26,7 +26,7 @@ export default function Habit({info, days, habitId, updateHabits, token}) {
                     })
                 }
             </WeekContainer>
-            <ion-icon name="trash-outline" onClick={deleteHabit}></ion-icon>
+            <ion-icon name="trash-outline" onClick={deleteHabit} data-test="habit-delete-btn"></ion-icon>
         </Container>
     );
 }

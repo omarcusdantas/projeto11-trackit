@@ -49,6 +49,7 @@ export default function LoginPage() {
                     onChange={(event) => setInputEmail(event.target.value)}
                     value={inputEmail}
                     disabled={isDisabled}
+                    data-test="email-input"
                 />
                 <input 
                     type="password" 
@@ -57,8 +58,9 @@ export default function LoginPage() {
                     onChange={(event) => setInputPassword(event.target.value)}
                     value={inputPassword}
                     disabled={isDisabled}
+                    data-test="password-input"
                 />
-                <button type="submit" disabled={isDisabled}>
+                <button type="submit" disabled={isDisabled} data-test="login-btn">
                     { isDisabled &&
                         <ThreeDots height="13px" color="#ffffff"></ThreeDots>
                     }
@@ -66,7 +68,7 @@ export default function LoginPage() {
                         "Entrar"
                     }
                 </button>
-                <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+                <Link to="/cadastro" data-test="signup-link">Não tem uma conta? Cadastre-se!</Link>
             </form>
         </LoginContainer>
     );

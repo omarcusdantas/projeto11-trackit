@@ -47,6 +47,7 @@ export default function RegisterPage() {
                     onChange={(event) => setInputEmail(event.target.value)}
                     value={inputEmail}
                     disabled={isDisabled}
+                    data-test="email-input"
                 />
                 <input 
                     type="password" 
@@ -55,6 +56,7 @@ export default function RegisterPage() {
                     onChange={(event) => setInputPassword(event.target.value)}
                     value={inputPassword}
                     disabled={isDisabled}
+                    data-test="password-input"
                 />
                 <input 
                     type="text" 
@@ -63,6 +65,7 @@ export default function RegisterPage() {
                     onChange={(event) => setInputName(event.target.value)}
                     value={inputName}
                     disabled={isDisabled}
+                    data-test="user-name-input"
                 />
                 <input 
                     type="url" 
@@ -71,8 +74,9 @@ export default function RegisterPage() {
                     onChange={(event) => setInputPhoto(event.target.value)}
                     value={inputPhoto}
                     disabled={isDisabled}
+                    data-test="user-image-input"
                 />
-                <button type="submit" disabled={isDisabled}>
+                <button type="submit" disabled={isDisabled} data-test="signup-btn">
                     { isDisabled &&
                         <ThreeDots height="13px" color="#ffffff"></ThreeDots>
                     }
@@ -80,7 +84,7 @@ export default function RegisterPage() {
                         "Cadastrar"
                     }
                 </button>
-                <Link to="/">Já tem uma conta? Faça login!</Link>
+                <Link to="/" data-test="login-link">Já tem uma conta? Faça login!</Link>
             </form>
         </LoginContainer>
     );

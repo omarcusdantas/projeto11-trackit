@@ -7,10 +7,10 @@ export default function TopBar() {
     const { userData } = React.useContext(UserContext);
 
     return (
-        <Bar>
+        <Bar data-test="header">
             <Container>
                 <h1>TrackIt</h1>
-                <img src={userData.img} alt="User photo" />
+                <img src={userData.img} alt="User photo" data-test="avatar" />
             </Container>
         </Bar>
     );

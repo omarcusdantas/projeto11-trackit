@@ -39,24 +39,32 @@ export default function AddHabit({toggleAddHabit, updateHabits, token}) {
     }
 
     return (
-        <Container>
+        <Container data-test="habit-create-container">
             <input 
                 type="text" 
                 placeholder="nome do hábito" 
                 disabled={isDisabled} 
                 onChange={(event) => setInputName(event.target.value)}
                 value={inputName}
+                data-test="habit-name-input"
             />
             <WeekContainer>
                 {
                     daysOfWeek.map((day, index) => (
-                        <DayButton key={index} text={day} dayIndex={index+1} isDisabled={isDisabled} selected={false} handleClick={manageDays}></DayButton>
+                        <DayButton 
+                            key={index} 
+                            text={day} 
+                            dayIndex={index+1} 
+                            isDisabled={isDisabled} 
+                            selected={false} 
+                            handleClick={manageDays}
+                        ></DayButton>
                     ))
                 }
             </WeekContainer>
             <ButtonContainer>
-                <button onClick={toggleAddHabit} disabled={isDisabled}>Cancelar</button>
-                <button onClick={registerHabit} disabled={isDisabled}>
+                <button onClick={toggleAddHabit} disabled={isDisabled} data-test="habit-create-cancel-btn">Cancelar</button>
+                <button onClick={registerHabit} disabled={isDisabled} data-test="habit-create-save-btn">
                     { isDisabled &&
                         <ThreeDots height="13px" color="#ffffff"></ThreeDots>
                     }
