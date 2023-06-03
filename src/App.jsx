@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import HabitsPage from "./pages/HabitsPage/HabitsPage";
+import TodayPage from "./pages/TodayPage/TodayPage";
 import { UserProvider } from "./UserContext";
 
 export default function App() {
@@ -20,7 +21,11 @@ export default function App() {
                     <Route 
                         path="/habitos" 
                         element={<HabitsPage />}
-                    />                
+                    />
+                    <Route 
+                        path="/hoje" 
+                        element={<TodayPage />}
+                    />
                 </Routes>
             </UserProvider>
         </BrowserRouter>

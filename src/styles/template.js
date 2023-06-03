@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const LoginContainer = styled.div`
+export const LoginContainer = styled.div`
     height: 667px;
     display: flex;
     flex-direction: column;
@@ -57,4 +57,59 @@ const LoginContainer = styled.div`
     }
 `;
 
-export default LoginContainer;
+export const PageContainer = styled.div`
+    background-color: #F2F2F2;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+`;
+
+export const Main = styled.div`
+    width: 375px;
+    margin-top: 92px;
+    margin-bottom: 115px;
+    padding: 0 18px;
+`;
+
+export const Title = styled.div`
+    min-height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    h2 {
+        font-size: 23px;
+        color: #126BA5;
+    }
+
+    button {
+        width: 40px;
+        height: 35px;
+        background-color: #52B6FF;
+        border-radius: 4.6px;
+        position: relative;
+
+        p {
+            color: #ffffff;
+            font-size: 27px;
+            position: absolute;
+            top: -2px;
+            left: 12.7px;
+        }
+    }
+
+`;
+
+export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 29px;
+
+    p {
+        font-size: 18px;
+        color: #666666;
+        line-height: 22px;
+    }
+`;
+

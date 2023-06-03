@@ -32,7 +32,7 @@ export default function Habit({info, days, habitId, updateHabits, token}) {
 }
 
 const Container = styled.div`
-    height: 91px;
+    min-height: 91px;
     background-color: #ffffff;
     border-radius: 5px;
     padding: 14px 18px;

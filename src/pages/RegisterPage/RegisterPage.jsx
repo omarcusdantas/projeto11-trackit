@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React from "react";
-import LoginContainer from "../../styles/LoginContainer";
+import { LoginContainer } from "../../styles/template";
 import logo from "../../assets/logo.png";
 import { ThreeDots } from "react-loader-spinner";
 
