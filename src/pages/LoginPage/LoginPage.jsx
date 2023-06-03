@@ -28,9 +28,10 @@ export default function LoginPage() {
                 setIsDisabled(false);  
                 setUserData({
                     token: response.data.token,
-                    img: response.data.image
+                    img: response.data.image,
+                    progress: 0
                 });
-                navigate("/habitos");             
+                navigate("/hoje");             
             })
             .catch((error) => {
                 setIsDisabled(false);

@@ -9,9 +9,8 @@ import styled from "styled-components";
 import TodayDate from '../../TodayDate';
 
 export default function TodayPage() {
-    const { userData } = React.useContext(UserContext);
+    const { userData, setUserData } = React.useContext(UserContext);
     const [dailyHabits, setDailyHabits] = React.useState([]);
-    const [progress, setProgress] = React.useState(0);
 
     function updateProgress(habits) {
         let total = 0;
@@ -20,7 +19,8 @@ export default function TodayPage() {
                 total++;
             }
         })
-        setProgress(Math.round(total/habits.length*100));
+        const newProgress = Math.round(total/habits.length*100);
+        setUserData({...userData, progress: newProgress});
     }
 
     function getDailyHabits() {
@@ -44,8 +44,8 @@ export default function TodayPage() {
                 <Title>
                     <TitleContainer>
                         <TodayDate></TodayDate>
-                        <ProgressContainer progress={progress}>
-                            {progress === 0? `Nenhum hábito concluído ainda` : `${progress}% dos hábitos concluídos`}
+                        <ProgressContainer progress={userData.progress}>
+                            {userData.progress === 0? `Nenhum hábito concluído ainda` : `${userData.progress}% dos hábitos concluídos`}
                         </ProgressContainer>
                     </TitleContainer>
                 </Title>

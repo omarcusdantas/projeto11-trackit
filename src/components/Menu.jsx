@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { UserContext } from "../UserContext";
 
 export default function Menu() {
+    const { userData } = React.useContext(UserContext);
+
     return (
         <MenuBar data-test="menu">
             <MenuContainer>
@@ -12,8 +15,7 @@ export default function Menu() {
                 <Link to="/hoje" data-test="today-link">
                     <ProgressContainer>
                         <CircularProgressbar
-                            value={10} 
-                            maxValue={20}
+                            value={userData.progress} 
                             text={"Hoje"}
                             background
                             backgroundPadding={6}
