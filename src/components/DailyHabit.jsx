@@ -3,7 +3,7 @@ import styled from "styled-components";
 import checkImg from "../assets/check.png"
 import axios from "axios";
 
-export default function DailyHabit({info, token, updateDailyHabits}) {
+export default function DailyHabit({info, token, updateDailyHabits, isDisabled}) {
     function handleHabit() {
         if (info.done === false) {
             axios
@@ -23,18 +23,23 @@ export default function DailyHabit({info, token, updateDailyHabits}) {
         <Container>
             <Text>
                 <h3>{info.name}</h3>
-                <p>Sequência atual:{" "} 
-                    <HabitInfo status={info.done? "true" : "false"} highest={"false"}>
-                        {info.currentSequence === 1? `1 dia` : `${info.currentSequence} dias`}
-                    </HabitInfo>
-                </p>
-                <p>Seu recorde:{" "}
-                    <HabitInfo highest={info.currentSequence > 0 && info.currentSequence >= info.highestSequence? "true" : "false"} status={"false"}>
-                        {info.highestSequence === 1? `1 dia` : `${info.highestSequence} dias`}
-                    </HabitInfo>
-                </p>
+                {   
+                    info.currentSequence !== undefined &&
+                    <div>
+                        <p>Sequência atual:{" "} 
+                            <HabitInfo status={info.done? "true" : "false"} highest={"false"}>
+                                {info.currentSequence === 1? `1 dia` : `${info.currentSequence} dias`}
+                            </HabitInfo>
+                        </p>
+                        <p>Seu recorde:{" "}
+                            <HabitInfo highest={info.currentSequence > 0 && info.currentSequence >= info.highestSequence? "true" : "false"} status={"false"}>
+                                {info.highestSequence === 1? `1 dia` : `${info.highestSequence} dias`}
+                            </HabitInfo>
+                        </p>
+                    </div>
+                }
             </Text>
-            <Check onClick={handleHabit} status={info.done? "true" : "false"}>
+            <Check onClick={handleHabit} status={info.done? "true" : "false"} disabled={isDisabled}>
                 <img src={checkImg} alt="Check" />
             </Check>
         </Container>
@@ -97,6 +102,10 @@ const Check = styled.button`
             return "#8FC549";
         } 
             return "#E7E7E7";
-        }}; 
+        }};
+        
+    &:disabled {
+        cursor: default;
+    }
 `;
 

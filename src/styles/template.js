@@ -96,6 +96,14 @@ export const Title = styled.div`
             top: -2px;
             left: 12.7px;
         }
+
+        ion-icon {
+            position: absolute;
+            color: #ffffff;
+            font-size: 30px;
+            top: 2px;
+            left: 5px;
+        }
     }
 
 `;

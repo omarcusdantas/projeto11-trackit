@@ -3,6 +3,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import HabitsPage from "./pages/HabitsPage/HabitsPage";
 import TodayPage from "./pages/TodayPage/TodayPage";
+import HistoricPage from "./pages/HistoricPage/HistoricPage";
 import { UserProvider } from "./UserContext";
 
 export default function App() {
@@ -25,6 +26,10 @@ export default function App() {
                     <Route 
                         path="/hoje" 
                         element={<TodayPage />}
+                    />
+                    <Route 
+                        path="/historico" 
+                        element={<HistoricPage />}
                     />
                 </Routes>
             </UserProvider>
