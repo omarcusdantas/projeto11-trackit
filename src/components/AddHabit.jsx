@@ -4,11 +4,9 @@ import DayButton from "./DayButton";
 import { ThreeDots } from "react-loader-spinner";
 import axios from "axios";
 
-export default function AddHabit({toggleAddHabit, updateHabits, token}) {
+export default function AddHabit({toggleAddHabit, updateHabits, token, inputName, setInputName, days, setDays}) {
     const daysOfWeek = ["D", "S", "T", "Q", "Q", "S", "S"];
     const [isDisabled, setIsDisabled] = React.useState(false);
-    const [days, setDays] = React.useState([]);
-    const [inputName, setInputName] = React.useState("");
 
     function manageDays(day) {
         const indexToRemove = days.indexOf(day);
@@ -33,8 +31,12 @@ export default function AddHabit({toggleAddHabit, updateHabits, token}) {
 
             axios
                 .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", data, { headers: {"Authorization" : `Bearer ${token}`}})
-                .then(() => {updateHabits(); toggleAddHabit();})
-                .catch((error) => console.log(error));
+                .then(() => {updateHabits(); setDays([]); setInputName(""); toggleAddHabit();})
+                .catch((error) => {alert(error); setIsDisabled(false);});
+        }
+        else {
+            alert("Preencha corretamente");
+            setIsDisabled(false);
         }
     }
 
@@ -54,9 +56,9 @@ export default function AddHabit({toggleAddHabit, updateHabits, token}) {
                         <DayButton 
                             key={index} 
                             text={day} 
-                            dayIndex={index+1} 
+                            dayIndex={index} 
                             isDisabled={isDisabled} 
-                            selected={false} 
+                            selected={days.includes(index)} 
                             handleClick={manageDays}
                         ></DayButton>
                     ))

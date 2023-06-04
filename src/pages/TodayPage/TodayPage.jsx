@@ -50,7 +50,7 @@ export default function TodayPage() {
                     <TitleContainer>
                         <TodayDate></TodayDate>
                         <ProgressContainer progress={userData.progress}>
-                            {userData.progress === 0? `Nenhum hábito concluído ainda` : `${userData.progress}% dos hábitos concluídos`}
+                            {userData.progress === 0 || isNaN(userData.progress)? `Nenhum hábito concluído ainda` : `${userData.progress}% dos hábitos concluídos`}
                         </ProgressContainer>
                     </TitleContainer>
                 </Title>
@@ -81,7 +81,7 @@ const ProgressContainer = styled.p`
     font-size: 18px;
 
     color: ${(props) => {
-        if (props.progress === 0) {
+        if (props.progress === 0 || isNaN(props.progress)) {
             return "#BABABA";
         } 
         return "#8FC549";

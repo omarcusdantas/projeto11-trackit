@@ -9,6 +9,8 @@ import { PageContainer, Main, Title, Container } from "../../styles/template";
 import { useNavigate } from "react-router-dom";
 
 export default function HabitsPage() {
+    const [days, setDays] = React.useState([]);
+    const [inputName, setInputName] = React.useState("");
     const [isAddHabit, setIsAddHabit] = React.useState(false);
     const [habits, setHabits] = React.useState([]);
     const { userData } = React.useContext(UserContext);
@@ -48,6 +50,10 @@ export default function HabitsPage() {
                         toggleAddHabit={toggleAddHabit} 
                         updateHabits={getHabits} 
                         token={userData.token}
+                        inputName={inputName}
+                        setInputName={setInputName}
+                        days={days}
+                        setDays={setDays}
                     ></AddHabit>
                 }
                 <Container>

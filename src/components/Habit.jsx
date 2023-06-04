@@ -7,10 +7,12 @@ export default function Habit({info, days, habitId, updateHabits, token}) {
     const daysOfWeek = ["D", "S", "T", "Q", "Q", "S", "S"];
 
     function deleteHabit() {
-        axios
-            .delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}`, { headers: {"Authorization" : `Bearer ${token}`}})
-            .then(() => {updateHabits()})
-            .catch((error) => console.log(error));
+        if(confirm("Deseja excluir hábito?")) {
+            axios
+                .delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}`, { headers: {"Authorization" : `Bearer ${token}`}})
+                .then(() => {updateHabits()})
+                .catch((error) => console.log(error));
+        }
     }
 
     return (
@@ -19,7 +21,7 @@ export default function Habit({info, days, habitId, updateHabits, token}) {
             <WeekContainer>
                 {
                     daysOfWeek.map((day, index) => {
-                        if(days.includes(index+1)) {
+                        if(days.includes(index)) {
                             return <DayButton key={index} text={day} isDisabled={true} selected={true}></DayButton>
                         }
                         return <DayButton key={index} text={day} isDisabled={true} selected={false}></DayButton>

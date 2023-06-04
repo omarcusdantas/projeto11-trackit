@@ -15,7 +15,7 @@ export default function Menu() {
                 <Link to="/hoje" data-test="today-link">
                     <ProgressContainer>
                         <CircularProgressbar
-                            value={userData.progress} 
+                            value={userData.progress? userData.progress : 0} 
                             text={"Hoje"}
                             background
                             backgroundPadding={6}
