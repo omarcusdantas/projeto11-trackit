@@ -8,7 +8,6 @@ import axios from "axios";
 import dayjs from 'dayjs';
 import { CalendarContainer } from "../../styles/CalendarContainer";
 import DailyHabit from "../../components/DailyHabit";
-import { useNavigate } from "react-router-dom";
 
 export default function HistoricPage() {
     const { userData } = React.useContext(UserContext);
@@ -16,7 +15,6 @@ export default function HistoricPage() {
     const [selectedDate, setSelectedDate] = React.useState(null);
     const [showHabits, setShowHabits] = React.useState(false);
     const [habitsInfo, setHabitsInfo] = React.useState({});
-    const navigate = useNavigate();
 
     React.useEffect(() => {
         axios
@@ -26,7 +24,6 @@ export default function HistoricPage() {
             })
             .catch((error) => {
                 console.log(error);
-                navigate("/"); 
             });
     }, []);
 

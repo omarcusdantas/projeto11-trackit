@@ -6,7 +6,6 @@ import Habit from "../../components/Habit";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import { PageContainer, Main, Title, Container } from "../../styles/template";
-import { useNavigate } from "react-router-dom";
 
 export default function HabitsPage() {
     const [days, setDays] = React.useState([]);
@@ -14,7 +13,6 @@ export default function HabitsPage() {
     const [isAddHabit, setIsAddHabit] = React.useState(false);
     const [habits, setHabits] = React.useState([]);
     const { userData } = React.useContext(UserContext);
-    const navigate = useNavigate();
 
     function getHabits() {
         axios
@@ -24,7 +22,6 @@ export default function HabitsPage() {
             })
             .catch((error) => {
                 console.log(error);
-                navigate("/"); 
             });
     }
 

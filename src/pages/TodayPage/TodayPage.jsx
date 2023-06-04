@@ -7,12 +7,10 @@ import axios from "axios";
 import { PageContainer, Main, Title, Container } from "../../styles/template";
 import styled from "styled-components";
 import TodayDate from '../../components/TodayDate';
-import { useNavigate } from "react-router-dom";
 
 export default function TodayPage() {
     const { userData, setUserData } = React.useContext(UserContext);
     const [dailyHabits, setDailyHabits] = React.useState([]);
-    const navigate = useNavigate();
 
     function updateProgress(habits) {
         let total = 0;
@@ -34,7 +32,6 @@ export default function TodayPage() {
             })
             .catch((error) => {
                 console.log(error);
-                navigate("/"); 
             });
     }
 
