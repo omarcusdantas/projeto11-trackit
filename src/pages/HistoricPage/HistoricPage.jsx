@@ -74,16 +74,17 @@ export default function HistoricPage() {
                     <Title>
                         <h2>Histórico</h2>
                     </Title>
-                    <CalendarContainer>
-                        <Calendar
-                            className="react-calendar"
-                            locale="pt-BR"
-                            weekStartsOn={0}
-                            tileClassName={tileClassName}
-                            onChange={handleDateChange}
-                            value={selectedDate}
-                        ></Calendar>
-                    </CalendarContainer>
+                        <CalendarContainer data-test="calendar">
+                            <Calendar
+                                className="react-calendar"
+                                locale="pt-BR"
+                                weekStartsOn={0}
+                                tileClassName={tileClassName}
+                                onChange={handleDateChange}
+                                value={selectedDate}
+                                data-test="calendar"
+                            ></Calendar>
+                        </CalendarContainer>
                 </Main>
             }
             {

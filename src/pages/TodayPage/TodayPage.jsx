@@ -6,7 +6,7 @@ import { UserContext } from "../../UserContext";
 import axios from "axios";
 import { PageContainer, Main, Title, Container } from "../../styles/template";
 import styled from "styled-components";
-import TodayDate from '../../TodayDate';
+import TodayDate from '../../components/TodayDate';
 import { useNavigate } from "react-router-dom";
 
 export default function TodayPage() {
@@ -49,7 +49,7 @@ export default function TodayPage() {
                 <Title>
                     <TitleContainer>
                         <TodayDate></TodayDate>
-                        <ProgressContainer progress={userData.progress}>
+                        <ProgressContainer progress={userData.progress} data-test="today-counter">
                             {userData.progress === 0 || isNaN(userData.progress)? `Nenhum hábito concluído ainda` : `${userData.progress}% dos hábitos concluídos`}
                         </ProgressContainer>
                     </TitleContainer>

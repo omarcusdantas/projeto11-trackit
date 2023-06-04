@@ -20,18 +20,18 @@ export default function DailyHabit({info, token, updateDailyHabits, isDisabled})
     }
 
     return (
-        <Container>
+        <Container data-test="today-habit-container">
             <Text>
-                <h3>{info.name}</h3>
+                <h3 data-test="today-habit-name">{info.name}</h3>
                 {   
                     info.currentSequence !== undefined &&
                     <div>
-                        <p>Sequência atual:{" "} 
+                        <p data-test="today-habit-sequence">Sequência atual:{" "} 
                             <HabitInfo status={info.done? "true" : "false"} highest={"false"}>
                                 {info.currentSequence === 1? `1 dia` : `${info.currentSequence} dias`}
                             </HabitInfo>
                         </p>
-                        <p>Seu recorde:{" "}
+                        <p data-test="today-habit-record">Seu recorde:{" "}
                             <HabitInfo highest={info.currentSequence > 0 && info.currentSequence >= info.highestSequence? "true" : "false"} status={"false"}>
                                 {info.highestSequence === 1? `1 dia` : `${info.highestSequence} dias`}
                             </HabitInfo>
@@ -39,7 +39,7 @@ export default function DailyHabit({info, token, updateDailyHabits, isDisabled})
                     </div>
                 }
             </Text>
-            <Check onClick={handleHabit} status={info.done? "true" : "false"} disabled={isDisabled}>
+            <Check onClick={handleHabit} status={info.done? "true" : "false"} disabled={isDisabled} data-test="today-habit-check-btn">
                 <img src={checkImg} alt="Check" />
             </Check>
         </Container>
