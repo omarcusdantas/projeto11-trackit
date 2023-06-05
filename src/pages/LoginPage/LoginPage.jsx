@@ -13,6 +13,16 @@ export default function LoginPage() {
     const { setUserData } = React.useContext(UserContext);
     const navigate = useNavigate();
 
+    React.useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            setUserData(user);
+            navigate("/hoje");
+        }
+    }, []);
+
     function handleForm(event) {
         event.preventDefault();
         setIsDisabled(true);
@@ -25,12 +35,14 @@ export default function LoginPage() {
         axios
             .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", data)
             .then((response) => {
-                setIsDisabled(false);  
-                setUserData({
+                setIsDisabled(false);
+                const newUserData = {
                     token: response.data.token,
                     img: response.data.image,
                     progress: 0
-                });
+                }
+                setUserData(newUserData);
+                localStorage.setItem("user", JSON.stringify(newUserData));
                 navigate("/hoje");             
             })
             .catch((error) => {
