@@ -57,5 +57,5 @@ const Container = styled.div`
 const WeekContainer = styled.div`
     display: flex;
     gap: 4px;
-    margin: 8px 0 29px 0;
+    margin: 8px 0 0px 0;
 `;
